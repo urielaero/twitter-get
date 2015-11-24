@@ -24,7 +24,6 @@ module.exports = {
     to = to.endOf('day');
 
     get(hashtag, function(err, tweet){
-      console.log(err);
       if(err) return res.json({err: err[0].message});
       var locations = tweet.statuses.map(function(tw){
         var obj = {
