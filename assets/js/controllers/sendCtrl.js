@@ -16,8 +16,13 @@
 		$scope.onPressHT = function(){
       $scope.load = true;
 			$http.post(API, {hashtag: $scope.nonameHT, from: $scope.dateFrom, to: $scope.dateTo}).then(function successCallback(response){
+        console.log(response);
         $scope.load = false;
-				$scope.zones = response.data;
+        if(response.data && response.data.err){
+          $scope.message = response.data.err;
+        }else{
+  				$scope.zones = response.data;
+        }
 			}, function errorCallback (response){
 			});
 		};

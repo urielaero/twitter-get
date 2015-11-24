@@ -8,10 +8,10 @@
 var Twitter = require('twitter'),
   moment = require('moment');
   client = new Twitter({
-  consumer_key: process.env.CONSUMER_KEY,
-  consumer_secret: process.env.CONSUMER_SECRET,
-  access_token_key:  process.env.TOKEN_KEY,
-  access_token_secret: process.env.TOKEN_SECRET
+    consumer_key: process.env.CONSUMER_KEY,
+    consumer_secret: process.env.CONSUMER_SECRET,
+    access_token_key:  process.env.TOKEN_KEY,
+    access_token_secret: process.env.TOKEN_SECRET
 });
 
 module.exports = {
@@ -24,7 +24,8 @@ module.exports = {
     to = to.endOf('day');
 
     get(hashtag, function(err, tweet){
-      if(err) return res.json(err);
+      console.log(err);
+      if(err) return res.json({err: err[0].message});
       var locations = tweet.statuses.map(function(tw){
         var obj = {
           text: tw.text,
