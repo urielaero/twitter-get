@@ -8,36 +8,33 @@
 
 <body>
     <div ng-app="myApp" ng-controller="sendCtrl">
-       
+
         <p>Enter Hashtag: <br>
             <input type="text" name="nameHT" ng-model="nonameHT" ng-change="onChange()"  required>
 
                 <span style="color:red" ng-show="showError"> {{ message }} </span>
         </p>
 
-        <p>Date From: 
+        <p>Date From:
             <input type="date" ng-model="dateFrom" ng-required="true" close-on-date-selection="true">
 
             Date To:
-            <input type="date" ng-model="dateTo" ng-required="true" close-on-date-selection="true">            
+            <input type="date" ng-model="dateTo" ng-required="true" close-on-date-selection="true">
         </p>
 
         <button ng-click="onPressHT()"> Send </button>
 
-        <div ng-repeat="tweet in tweets">
-                <div ng-repeat="info in tweet">
+        <div ng-repeat="zone in zones" ng-if="!load">
+          <hr>
+          <p>Locación: {{zone.location}}</p>
+                <div ng-repeat="tweet in zone.tweets">
                     <p>
-                        Lugar: {{ info.location }} <br>
-                        Fecha: {{ info.created_at }} <br>
-                        Tweet: {{ info.text }}
+                        <!-- Lugar: {{ info.location }}  --><br>
+                        Fecha: {{ tweet.created }} <br>
+                        Tweet: {{ tweet.text }}
                     </p>
-                </div>            
+                </div>
         </div>
-    </div> 
-
-    <script src="js/js/angular.min.js"></script>
-    <script src="js/main.js"></script> 
-    <script src="js/controllers/sendCtrl.js"></script>
-
+    </div>
 </body>
 </html>
